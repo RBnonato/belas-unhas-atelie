@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt">
+<head>
+    <title>Admin - Belas Unhas</title>
+</head>
+<body>
+    <h1>Agendamentos</h1>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <form method="POST">
+        Senha: <input type="password" name="senha" required>
+        <button type="submit">Ver Agendamentos</button>
+    </form>
+    <ul>
+    {% for ag in agendamentos %}
+        <li>{{ ag[1] }} - {{ ag[2] }} às {{ ag[3] }} 
+            <a href="/deletar/{{ ag[0] }}">[Cancelar]</a>
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

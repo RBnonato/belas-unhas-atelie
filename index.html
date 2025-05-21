@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt">
+<head>
+    <title>Belas Unhas Ateliê</title>
+</head>
+<body>
+    <h1>Bem-vinda ao Belas Unhas Ateliê</h1>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <form method="POST" action="/agendar">
+        Nome: <input type="text" name="nome" required><br>
+        Data: <input type="date" name="data" min="{{ data_hoje }}" required><br>
+        Horário:
+        <select name="horario" required>
+            {% for h in horarios %}
+                <option value="{{ h }}">{{ h }}</option>
+            {% endfor %}
+        </select><br>
+        <button type="submit">Agendar</button>
+    </form>
+    <br>
+    <a href="/admin">Área da Manicure</a>
+</body>
+</html>
